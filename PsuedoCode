@@ -1,1 +1,21 @@
+Activity 1
+______________________
+#include <iostream>
+#include <string>
+using namespace std;
 
+int main() {
+    string phrase;
+    cout << "Enter a phrase: ";
+    getline(cin, phrase); // get full line input
+
+    // convert each character to uppercase using ASCII
+    for (int i = 0; i < phrase.length(); i++) {
+        if (phrase[i] >= 'a' && phrase[i] <= 'z') {
+            phrase[i] = phrase[i] - ('a' - 'A'); // shift ASCII value
+        }
+    }
+
+    cout << "Output: " << phrase << endl;
+    return 0;
+}
