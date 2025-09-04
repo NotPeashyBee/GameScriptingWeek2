@@ -1,21 +1,116 @@
 Activity 1
 ______________________
-#include <iostream>
-#include <string>
-using namespace std;
+FUNCTION convertToCaps(userInput)
+    FOR each character in userInput
+        IF character is a lowercase letter (ASCII 97-122)
+            convert to uppercase by subtracting 32 from ASCII
+        ELSE IF character is a space (ASCII 32)
+            leave as is
+        ELSE
+            PRINT "Invalid character found. Only letters and spaces allowed."
+            RETURN error
+    END FOR
+    RETURN converted string
 
-int main() {
-    string phrase;
-    cout << "Enter a phrase: ";
-    getline(cin, phrase); // get full line input
+MAIN
+    PRINT "Enter a phrase:"
+    INPUT userPhrase
+    result = convertToCaps(userPhrase)
+    IF result is not error
+        PRINT "Your phrase in all caps: " + result
 
-    // convert each character to uppercase using ASCII
-    for (int i = 0; i < phrase.length(); i++) {
-        if (phrase[i] >= 'a' && phrase[i] <= 'z') {
-            phrase[i] = phrase[i] - ('a' - 'A'); // shift ASCII value
-        }
-    }
+Activity 2
+__________________
+FUNCTION getNumber(prompt)
+    LOOP
+        PRINT prompt
+        INPUT userInput
+        IF userInput is a valid number
+            RETURN userInput as a number
+        ELSE
+            PRINT "Invalid input. Please enter a valid number."
 
-    cout << "Output: " << phrase << endl;
-    return 0;
-}
+MAIN
+    number1 = getNumber("Enter the first number: ")
+    number2 = getNumber("Enter the second number: ")
+    sum = number1 + number2
+    PRINT "The sum is: " + sum
+
+Activity 3
+_____________________
+FUNCTION getNumber(prompt)
+    LOOP
+        PRINT prompt
+        INPUT userInput
+        IF userInput is a valid number
+            RETURN userInput as a number
+        ELSE
+            PRINT "Invalid input. Please enter a number."
+
+MAIN
+    totalSum = 0
+    LOOP
+        number = getNumber("Enter a number: ")
+        totalSum = totalSum + number
+        
+        LOOP
+            PRINT "Another number? (y/n)"
+            INPUT response
+            IF response is "y" or "Y"
+                BREAK inner loop (ask for next number)
+            ELSE IF response is "n" or "N"
+                PRINT "The total sum is: " + totalSum
+                EXIT main loop
+            ELSE
+                PRINT "Invalid input. Please enter 'y' or 'n'."
+
+Activity 4
+_______________________
+FUNCTION getMaxNumber(prompt)
+    LOOP
+        PRINT prompt
+        INPUT userInput
+        IF userInput is a valid whole number greater than 0
+            RETURN userInput as integer
+        ELSE
+            PRINT "Invalid input. Please enter a positive whole number."
+
+FUNCTION getYesNo(prompt)
+    LOOP
+        PRINT prompt
+        INPUT response
+        IF response is "y" or "Y"
+            RETURN True
+        ELSE IF response is "n" or "N"
+            RETURN False
+        ELSE
+            PRINT "Invalid input. Please enter 'y' or 'n'."
+
+MAIN
+    LOOP
+        maxNumber = getMaxNumber("Enter the maximum number: ")
+        randomNumber = generateRandomInteger(0, maxNumber)  // inclusive
+        PRINT "Random number: " + randomNumber
+
+        playAgain = getYesNo("New number? (y/n)")
+        IF playAgain is False
+            PRINT "Thanks for playing!"
+            EXIT loop
+Activity 5
+___________________________
+INITIALIZE leftCount = 0
+INITIALIZE rightCount = 0
+
+FOR i = 1 TO 10
+    randomNumber = generateRandomInteger(1, 100)  // choose 1-100 to avoid 0
+
+    IF randomNumber % 2 == 0  // even
+        PRINT randomNumber + " - RIGHT"
+        rightCount = rightCount + 1
+    ELSE  // odd
+        PRINT randomNumber + " - LEFT"
+        leftCount = leftCount + 1
+END FOR
+
+PRINT "Left: " + leftCount
+PRINT "Right: " + rightCount
